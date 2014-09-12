@@ -57,7 +57,8 @@ while min_taken_date < MAX_DATE
     :lng => "-123.113",
     :distance => "5000",
     :min_timestamp => min_taken_date_str,
-    :max_timestamp => max_taken_date_str
+    :max_timestamp => max_taken_date_str,
+    :count => 100
   }
   vancouver_photos = getInstagramResponse(url, url_params)
   if vancouver_photos["meta"]["code"] != 200
