@@ -12,8 +12,8 @@ client_id = instagram_config['client_id']
 url = 'media/search/'
 url_params = {
   :client_id => client_id,
-  :lat => "49.260",
-  :lng => "-123.11"
+  :lat => "49.260", # source: http://code.flickr.net/2008/09/04/whos-on-first/
+  :lng => "-123.113"
 }
 vancouver_photos = getInstagramResponse(url, url_params)
 pp vancouver_photos
