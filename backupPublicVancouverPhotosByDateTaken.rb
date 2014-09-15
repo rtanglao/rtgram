@@ -46,12 +46,14 @@ MAX_DATE = Time.local(ARGV[3].to_i, ARGV[4].to_i, ARGV[5].to_i, 23, 59) # may wa
 
 min_taken_date  = MIN_DATE
 max_taken_date  = MIN_DATE + (60 * 60 * 24) - 1
+previous_max_date = Time.at(0)
+exit_this_date = false
 # 1st   6:59:50 aka 11:59:50p.m.
 # 100th 6:37:37 aka 11:37p.m.
 # Therefore take min time ie. the time of the 100th photo in this case and use that as max time
 $stderr.printf("min_taken:%s max_taken:%s\n", min_taken_date, max_taken_date)
 min_taken_date_from_instagram = MAX_DATE
-while max_taken_date > MIN_DATE
+while max_taken_date > MIN_DATE && !exit_this_date
   min_taken_date_str = min_taken_date.to_i.to_s
   max_taken_date_str = max_taken_date.to_i.to_s
   url_params = {
@@ -95,5 +97,16 @@ while max_taken_date > MIN_DATE
 
   # min_taken_date += (60 * 60 * 24)
   max_taken_date = min_taken_date_from_instagram
+  $stderr.printf("END of API photo loop: max_taken_date:%s previous_max_date:%s\n",
+                 max_taken_date, previous_max_date)
+  if previous_max_date != Time.at(0)
+    if previous_max_date == max_taken_date
+      exit_this_date = true
+      $stderr.printf("setting exit_this_date to TRUE\n")
+    else
+      $stderr.printf("LEAVING exit_this_date set to FALSE\n")
+    end
+  end
+  previous_max_date = max_taken_date    
 end
 # pp vancouver_photos
