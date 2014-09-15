@@ -68,6 +68,9 @@ begin
       :count => 100
     }
     vancouver_photos = getInstagramResponse(url, url_params)
+    if vancouver_photos.nil?
+      break
+    end
     if vancouver_photos["meta"]["code"] != 200
       $stderr.printf("meta.code:%d\n", vancouver_photos["meta"]["code"])
       break
