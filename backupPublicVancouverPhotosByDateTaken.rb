@@ -46,11 +46,14 @@ MAX_DATE = Time.local(ARGV[3].to_i, ARGV[4].to_i, ARGV[5].to_i, 23, 59) # may wa
 
 min_taken_date  = MIN_DATE
 max_taken_date  = MIN_DATE + (60 * 60 * 24) - 1
+# 1st   6:59:50 aka 11:59:50p.m.
+# 100th 6:37:37 aka 11:37p.m.
+# Therefore take min time ie. the time of the 100th photo in this case and use that as max time
 $stderr.printf("min_taken:%s max_taken:%s\n", min_taken_date, max_taken_date)
-while min_taken_date < MAX_DATE
+min_taken_date_from_instagram = MAX_DATE
+while max_taken_date > MIN_DATE
   min_taken_date_str = min_taken_date.to_i.to_s
   max_taken_date_str = max_taken_date.to_i.to_s
-  
   url_params = {
     :client_id => client_id,
     :lat => "49.260", # source: http://code.flickr.net/2008/09/04/whos-on-first/
@@ -76,6 +79,9 @@ while min_taken_date < MAX_DATE
     datetaken = datetaken.utc
     $stderr.printf("PHOTO datetaken:%s\n", datetaken)
     photo["datetaken"] = datetaken
+    if datetaken < min_taken_date_from_instagram
+      min_taken_date_from_instagram = datetaken
+    end
     id = photo["id"]
     existingPhoto =  photosColl.find_one("id" => id)
     if existingPhoto
@@ -87,7 +93,7 @@ while min_taken_date < MAX_DATE
     end
   end
 
-  min_taken_date += (60 * 60 * 24)
-  max_taken_date += (60 * 60 * 24)
+  # min_taken_date += (60 * 60 * 24)
+  max_taken_date = min_taken_date_from_instagram
 end
 # pp vancouver_photos
