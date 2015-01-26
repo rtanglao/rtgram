@@ -45,17 +45,12 @@ photosColl = db.collection("photos")
 query = {}
 query["datetaken"] = {"$gte" => MIN_DATE, "$lte" => MAX_DATE}
 printf("instagram_%d_%d_%d_%d_%d_%d = [\n", 
-       ARGV[0],
-       ARGV[1],
-       ARGV[2],
-       ARGV[3],
-       ARGV[4],
-       ARGV[5])
+       ARGV[0], ARGV[1], ARGV[2], ARGV[3], ARGV[4], ARGV[5])
 photosColl.find(query,
                 :fields => ["datetaken", "id", "location"]
                 ).sort([["datetaken", Mongo::ASCENDING]]).each do |p|
   location = p["location"]
-  printf("[%s,%s,%s,%s],\n", p["id"], 
+  printf("[%s,\"%s\",%s,%s],\n", p["id"], 
          p["datetaken"].to_s,
          location["latitude"].to_s, location["longitude"].to_s)
 end
