@@ -50,7 +50,7 @@ photosColl.find(query,
                 :fields => ["datetaken", "id", "location"]
                 ).sort([["datetaken", Mongo::ASCENDING]]).each do |p|
   location = p["location"]
-  printf("[%s,\"%s\",%s,%s],\n", p["id"], 
+  printf("[\"%s\",\"%s\",%s,%s],\n", p["id"], 
          p["datetaken"].to_s,
          location["latitude"].to_s, location["longitude"].to_s)
 end
