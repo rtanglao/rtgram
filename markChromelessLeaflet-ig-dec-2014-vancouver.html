@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+	<title>Instagram Vancouver Chromeless December 2014 </title>
+<script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+
+<script type="text/javascript" src="http://maps.stamen.com/js/tile.stamen.js"></script>
+<script type="text/javascript"src="ig-vancouver-dec-2014.js"></script>
+<script type="text/javascript">
+function initialize() {
+  var layer = new L.StamenTileLayer("toner-background");
+  var map = new L.Map("map", {
+        scrollWheelZoom: true,
+        touchZoom: true,
+        doubleClickZoom: true,
+        zoomControl: true,
+        dragging: false,
+        center: new L.LatLng(49.2604, -123.1140),
+	zoom: 13,
+	minZoom: 10,
+	maxZoom: 18,
+	//layers: [layer],
+	 });
+  for (var i = 0; i < instagram_2014_12_1_2014_12_31.length; i++) {
+    L.polygon([[instagram_2014_12_1_2014_12_31[i][2], instagram_2014_12_1_2014_12_31[i][3]]], {weight: 3, color:'black'}).addTo(map);
+  }
+}
+</script>
+        <style type="text/css">
+            #map {
+                width: 1920px;
+                height: 1080px;
+            }
+        </style>
+    </head>
+    <body onload="initialize()">
+        <div id="map">
+        </div>
+    </body>
+</html>
+</head>
+
