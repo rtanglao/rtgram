@@ -33,7 +33,7 @@ end
 photosColl = db.collection("photos")
 
 def  renumber(filename, file_number)
-  renumbered_filename = sprintf("RENUMBERED/%6.6d", file_number) + ".jpg"
+  renumbered_filename = sprintf("RENUMBERED/%7.7d", file_number) + ".jpg"
   $stderr.printf("ln -s %s %s\n", filename, renumbered_filename)
   if !File.exist?(renumbered_filename)
     $stderr.printf("Renumbered file does not exist, renaming\n")
