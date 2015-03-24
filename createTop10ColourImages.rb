@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 require 'rubygems'
 require 'RMagick'
+require 'isJPEG.rb'
 
 TOP_N = 10           # Number of swatches
 
@@ -17,6 +18,8 @@ end
 
 file_number = 0
 num_successful = 0
+number_skipped = 0
+
 while TRUE
 
   file_number += 1
@@ -29,7 +32,12 @@ while TRUE
                    top10_filename)
     next
   end
-  $stderr.printf("CREATING:%s\n",top10_filename)
+  if !isJPEG(filename)
+    number_skipped += 1
+    $stderr.printf("skipping NON JPEG:%s, %d skipped\n", filename, 
+                   number_skipped)
+    next
+  end
   skip = false
   begin
     original = Magick::Image.read(filename).first 
@@ -37,11 +45,14 @@ while TRUE
     skip = true
   end
   if skip
+    $stderr.printf("ImageMagick ERROR in:%s\n", filename)
     next
   else
     num_successful += 1
   end
-    
+  
+  $stderr.printf("CREATING:%s\n",top10_filename)
+
   quantized = original.quantize(TOP_N, Magick::RGBColorspace)
 
   top10 = sort_by_decreasing_frequency(quantized)
