@@ -16,4 +16,5 @@ working_image.pixels.map! do |pixel|
   end
 end
 sorted_colour_array = colour_hash.sort_by {|k,v| v}.reverse
+$stderr.printf("number of colours:%d\n", sorted_colour_array.length)
 pp sorted_colour_array[0..9]
