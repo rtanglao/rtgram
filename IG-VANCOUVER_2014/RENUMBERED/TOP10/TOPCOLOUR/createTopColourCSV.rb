@@ -23,5 +23,5 @@ printf "colour,count\n"
 sorted_colour_array.each do |colour|
   colour_rgb = colour[0]
   colour_count = colour[1]
-  printf("%6X,%d\n", colour_rgb, colour_count)
+  printf("#%6.6X,%d\n", colour_rgb, colour_count)
 end
