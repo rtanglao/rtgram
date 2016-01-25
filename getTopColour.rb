@@ -10,9 +10,13 @@ end
 Dir.glob('*.jpg') do |jpg_file|
   identify = MiniMagick::Tool::Identify.new
   identify << jpg_file
-  id = identify.call
-  if id.include? "JPEG"
-    colors3 = Miro::DominantColors.new(jpg_file)
-    printf("%s\n", colors3.to_hex[0])
+  begin
+    id = identify.call
+    if id.include? "JPEG"
+      colors3 = Miro::DominantColors.new(jpg_file)
+      printf("%s\n", colors3.to_hex[0])
+    end
+  rescue MiniMagick::Error
+    $stderr.printf("MiniMagick::Error file:%s\n", jpg_file)
   end
 end
