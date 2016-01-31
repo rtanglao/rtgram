@@ -28,7 +28,7 @@ photosExtraMetadata = db[:photosExtraMetadata]
 photosColl = db[:photos]
 Miro.options[:color_count] = 5
 
-photosColl.find().projection({ "id" => 1, "datetaken" => 1}).each{
+photosColl.find().projection({ "id" => 1, "datetaken" => 1}).each do
   |photo|
   id = photo["id"]
   datetaken = photo["datetaken"]
@@ -36,4 +36,4 @@ photosColl.find().projection({ "id" => 1, "datetaken" => 1}).each{
   extraMetadata = photosExtraMetadata.find({ "id" => id}).limit(1).first()
   extraMetadata["datetaken"] = datetaken
   photosExtraMetadata.find({ 'id' => id }).update_one(extraMetadata )
-}
+end
