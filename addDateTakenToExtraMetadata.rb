@@ -34,6 +34,7 @@ photosColl.find().projection({ "id" => 1, "datetaken" => 1}).each do
   datetaken = photo["datetaken"]
   $stderr.printf("id:%s datetaken:%s\n", id, datetaken.to_s)
   extraMetadata = photosExtraMetadata.find({ "id" => id}).limit(1).first()
+  next if extraMetadata.nil?
   extraMetadata["datetaken"] = datetaken
   photosExtraMetadata.find({ 'id' => id }).update_one(extraMetadata )
 end
