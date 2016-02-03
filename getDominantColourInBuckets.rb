@@ -31,35 +31,22 @@ match = { '$match' =>
           {"valid150x150jpg" => true, 'datetaken' =>
                                       { '$gte' => current_bucket,
                                         "$lt" => next_bucket } }}
-red_green_blue_divide_by_100 =
+red_green_blue_divide_by_100_and_pow =
   { '$project' =>
     { 
-      "red" =>
-      { "$divide" => ["$top_colour.red", 255.0]},
-      "green" =>
-      { "$divide" => ["$top_colour.green", 255.0]},
-      "blue" =>
-      { "$divide" => ["$top_colour.blue", 255.0]}
+      "red_pow" => { "$pow" => [{"$divide" => ["$top_colour.red", 255.0]}, 2.2]},
+      "green_pow" => { "$pow" => [{"$divide" => ["$top_colour.green", 255.0]}, 2.2]},
+      "blue_pow" => { "$pow" => [{"$divide" => ["$top_colour.blue", 255.0]}, 2.2]}
     }
   }
-red_green_blue_pow_22 =
-  { '$project' =>
-    {
-      "redpow" =>
-      { "$pow" => ["$red", 2.2]},
-      "greenpow" =>
-      { "$pow" => ["$green", 2.2]},
-      "bluepow" =>
-      { "$pow" => ["$blue", 2.2]}
-    }
-  }
+
 red_green_blue_linear_avg =
   { '$group' =>
     {
       "_id" => nil,
-      "red_linear_avg" => { "$avg" => "$redpow" },
-      "green_linear_avg" => { "$avg" => "$greenpow" },
-      "blue_linear_avg" => { "$avg" => "$bluepow" }
+      "red_linear_avg" => { "$avg" => "$red_pow" },
+      "green_linear_avg" => { "$avg" => "$green_pow" },
+      "blue_linear_avg" => { "$avg" => "$blue_pow" }
     }
   }
 red_green_blue_float_avg =
@@ -79,11 +66,10 @@ red_green_blue_float_avg =
 
 
 x = photosExtraMetadata.aggregate(
-  [match, red_green_blue_divide_by_100,
-   red_green_blue_pow_22,
+  [match, red_green_blue_divide_by_100_and_pow,
    red_green_blue_linear_avg,
    red_green_blue_float_avg
-     ]
+  ]
    )
 pp x
 x.each do |p|
