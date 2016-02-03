@@ -65,28 +65,27 @@ red_green_blue_linear_avg =
 red_green_blue_int_avg =
   { '$project' =>
     {
-      "red_int_avg" => { "$pow" => ["$red_linear_avg", 1.0/2.2] },
-      "green_int_avg" => { "$pow" => ["$green_linear_avg", 1.0/2.2] },
-      "blue_int_avg" => { "$pow" => ["$green_linear_avg", 1.0/2.2] }
+      "red_int_avg" => {
+        "$multiply" =>
+        [255.0, "$pow" => ["$red_linear_avg", 1.0/2.2]] },
+      "green_int_avg" => {
+        "$multiply" =>
+        [255.0, "$pow" => ["$green_linear_avg", 1.0/2.2]] },
+      "blue_int_avg" => {
+        "$multiply" =>
+        [255.0, "$pow" => ["$blue_linear_avg", 1.0/2.2]] }
     }
   }
+
 
 x = photosExtraMetadata.aggregate(
   [match, red_green_blue_divide_by_100,
    red_green_blue_pow_22,
    red_green_blue_linear_avg,
    red_green_blue_int_avg
-     # {
-     #   "$group" =>
-     #     {
-     #       "_id" => { "$avg" => { "$pow" => [ {"$divide" => ["$top5colours[0][0]",255.0] }, 2.2 ]}}
-     #     }
-     # }
      ]
    )
 pp x
 x.each do |p|
   pp p
 end
-
-
