@@ -62,18 +62,18 @@ red_green_blue_linear_avg =
       "blue_linear_avg" => { "$avg" => "$bluepow" }
     }
   }
-red_green_blue_int_avg =
+red_green_blue_float_avg =
   { '$project' =>
     {
-      "red_int_avg" => {
+      "red_float_avg" => {
         "$multiply" =>
-        [255.0, "$pow" => ["$red_linear_avg", 1.0/2.2]] },
-      "green_int_avg" => {
+        [255.0, "$pow" => ["$red_linear_avg", 1.0/2.2]]},
+      "green_float_avg" => {
         "$multiply" =>
-        [255.0, "$pow" => ["$green_linear_avg", 1.0/2.2]] },
-      "blue_int_avg" => {
+        [255.0, "$pow" => ["$green_linear_avg", 1.0/2.2]]},
+      "blue_float_avg" => {
         "$multiply" =>
-        [255.0, "$pow" => ["$blue_linear_avg", 1.0/2.2]] }
+        [255.0, "$pow" => ["$blue_linear_avg", 1.0/2.2]]}
     }
   }
 
@@ -82,7 +82,7 @@ x = photosExtraMetadata.aggregate(
   [match, red_green_blue_divide_by_100,
    red_green_blue_pow_22,
    red_green_blue_linear_avg,
-   red_green_blue_int_avg
+   red_green_blue_float_avg
      ]
    )
 pp x
