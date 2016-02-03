@@ -41,6 +41,16 @@ red_green_blue_divide_by_100 =
       { "$divide" => ["$top_colour.blue", 255.0]}
     }
   }
+red_green_blue_pow_22 =
+  { '$project' =>
+    { "redpow" =>
+      { "$pow" => ["$red", 2.2]},
+      "greenpow" =>
+      { "$pow" => ["$green", 2.2]},
+      "bluepow" =>
+      { "$pow" => ["$blue", 2.2]}
+    }
+  }
 slicetopcolour = { "$project" =>
                    { "firstTopColour" =>
                      { "$slice" => [ "$top5colours", 1 ] }}}
@@ -65,7 +75,8 @@ g1 = { "$group" => { "_id" => {"powlinear" => { "$pow" => [ "$linear", 2.2]}}}}
 #                                                        255.0]},
 #                            2.2 ]}}}}
 x = photosExtraMetadata.aggregate(
-     [match, red_green_blue_divide_by_100#, sliceR#, sliceRR#, slice1#,project #, g1
+  [match, red_green_blue_divide_by_100,
+   red_green_blue_pow_22
      # {
      #   "$group" =>
      #     {
