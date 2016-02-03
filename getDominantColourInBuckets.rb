@@ -27,8 +27,20 @@ photosExtraMetadata = db[:photosExtraMetadata]
 photosColl = db[:photos]
 current_bucket = Time.new(2015, 1, 1, 0, 0, 0, "-08:00") 
 next_bucket = current_bucket + 240 # 4 minute bucket size
-match = { '$match' => {"valid150x150jpg" => true, 'datetaken' => { '$gte' => current_bucket, "$lt" => next_bucket } }}
-sort1 = { "$sort" =>  {"datetaken" => 1 } }
+match = { '$match' =>
+          {"valid150x150jpg" => true, 'datetaken' =>
+                                      { '$gte' => current_bucket,
+                                        "$lt" => next_bucket } }}
+red_green_blue_divide_by_100 =
+  { '$project' =>
+    { "red" =>
+      { "$divide" => ["$top_colour.red", 255.0]},
+      "green" =>
+      { "$divide" => ["$top_colour.green", 255.0]},
+      "blue" =>
+      { "$divide" => ["$top_colour.blue", 255.0]}
+    }
+  }
 slicetopcolour = { "$project" =>
                    { "firstTopColour" =>
                      { "$slice" => [ "$top5colours", 1 ] }}}
@@ -53,7 +65,7 @@ g1 = { "$group" => { "_id" => {"powlinear" => { "$pow" => [ "$linear", 2.2]}}}}
 #                                                        255.0]},
 #                            2.2 ]}}}}
 x = photosExtraMetadata.aggregate(
-     [match, sort1, slicetopcolour#, sliceR#, sliceRR#, slice1#,project #, g1
+     [match, red_green_blue_divide_by_100#, sliceR#, sliceRR#, slice1#,project #, g1
      # {
      #   "$group" =>
      #     {
@@ -66,21 +78,5 @@ pp x
 x.each do |p|
   pp p
 end
-# r, g, b = 0.0, 0.0, 0.0
-# number_samples_in_bucket = 0
 
-# photosExtraMetadata.find({"valid150x150jpg" => true}).sort({ "datetaken" => 1}).each do
-#   |photo|
-#   id = photo["id"]
-#   datetaken = photo["datetaken"]
-#   if datetaken >= next_bucket
-#     if number_samples_in_bucket == 0
-#       printf("#0000\n")
-#       r, g, b = 0.0, 0.0, 0.0
-#       current_bucket = next_bucket
-#       next_bucket += 240
-#     end
-#   dominant_colour_array = photo["top5colours"][0]
-#   next if dominant_colour_array.nil?
-#   $stderr.printf("id:%s datetaken:%s\n", id, datetaken.to_s)
-# end
+
