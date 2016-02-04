@@ -52,6 +52,7 @@ red_green_blue_linear_avg =
 red_green_blue_float_avg =
   { '$project' =>
     {
+      "_id" => 0,
       "red_float_avg" => {
         "$multiply" =>
         [255.0, "$pow" => ["$red_linear_avg", 1.0/2.2]]},
@@ -70,8 +71,12 @@ x = photosExtraMetadata.aggregate(
    red_green_blue_linear_avg,
    red_green_blue_float_avg
   ]
-   )
-pp x
+)
+
 x.each do |p|
   pp p
 end
+y= x.to_a
+pp y
+pp y[0]["green_float_avg"]
+#pp x["blue_float_avg"]
