@@ -27,56 +27,74 @@ photosExtraMetadata = db[:photosExtraMetadata]
 photosColl = db[:photos]
 current_bucket = Time.new(2015, 1, 1, 0, 0, 0, "-08:00") 
 next_bucket = current_bucket + 240 # 4 minute bucket size
-match = { '$match' =>
-          {"valid150x150jpg" => true, 'datetaken' =>
-                                      { '$gte' => current_bucket,
-                                        "$lt" => next_bucket } }}
-red_green_blue_divide_by_100_and_pow =
-  { '$project' =>
-    { 
-      "red_pow" => { "$pow" => [{"$divide" => ["$top_colour.red", 255.0]}, 2.2]},
-      "green_pow" => { "$pow" => [{"$divide" => ["$top_colour.green", 255.0]}, 2.2]},
-      "blue_pow" => { "$pow" => [{"$divide" => ["$top_colour.blue", 255.0]}, 2.2]}
+last_bucket =  Time.new(2016, 1, 1, 0, 0, 0, "-08:00") 
+while next_bucket < last_bucket do
+  match = { '$match' =>
+            {"valid150x150jpg" => true, 'datetaken' =>
+                                        { '$gte' => current_bucket,
+                                          "$lt" => next_bucket } }}
+  red_green_blue_divide_by_100_and_pow =
+    { '$project' =>
+      { 
+        "red_pow" => { "$pow" => [{"$divide" => ["$top_colour.red", 255.0]}, 2.2]},
+        "green_pow" => { "$pow" => [{"$divide" => ["$top_colour.green", 255.0]}, 2.2]},
+        "blue_pow" => { "$pow" => [{"$divide" => ["$top_colour.blue", 255.0]}, 2.2]}
+      }
     }
-  }
 
-red_green_blue_linear_avg =
-  { '$group' =>
-    {
-      "_id" => nil,
-      "red_linear_avg" => { "$avg" => "$red_pow" },
-      "green_linear_avg" => { "$avg" => "$green_pow" },
-      "blue_linear_avg" => { "$avg" => "$blue_pow" }
+  red_green_blue_linear_avg =
+    { '$group' =>
+      {
+        "_id" => nil,
+        "red_linear_avg" => { "$avg" => "$red_pow" },
+        "green_linear_avg" => { "$avg" => "$green_pow" },
+        "blue_linear_avg" => { "$avg" => "$blue_pow" }
+      }
     }
-  }
-red_green_blue_float_avg =
-  { '$project' =>
-    {
-      "_id" => 0,
-      "red_float_avg" => {
-        "$multiply" =>
-        [255.0, "$pow" => ["$red_linear_avg", 1.0/2.2]]},
-      "green_float_avg" => {
-        "$multiply" =>
-        [255.0, "$pow" => ["$green_linear_avg", 1.0/2.2]]},
-      "blue_float_avg" => {
-        "$multiply" =>
-        [255.0, "$pow" => ["$blue_linear_avg", 1.0/2.2]]}
+  red_green_blue_float_avg =
+    { '$project' =>
+      {
+        "_id" => 0,
+        "red_float_avg" => {
+          "$multiply" =>
+          [255.0, "$pow" => ["$red_linear_avg", 1.0/2.2]]},
+        "green_float_avg" => {
+          "$multiply" =>
+          [255.0, "$pow" => ["$green_linear_avg", 1.0/2.2]]},
+        "blue_float_avg" => {
+          "$multiply" =>
+          [255.0, "$pow" => ["$blue_linear_avg", 1.0/2.2]]}
+      }
     }
-  }
 
 
-x = photosExtraMetadata.aggregate(
-  [match, red_green_blue_divide_by_100_and_pow,
-   red_green_blue_linear_avg,
-   red_green_blue_float_avg
-  ]
-)
+  colour_collection = photosExtraMetadata.aggregate(
+    [match, red_green_blue_divide_by_100_and_pow,
+     red_green_blue_linear_avg,
+     red_green_blue_float_avg
+    ]
+  )
+  current_bucket = next_bucket
+  next_bucket += 240 # 4 minute bucket size
 
-x.each do |p|
-  pp p
+  colour_array = colour_collection.to_a
+  if colour_array.nil? || colour_array.length == 0
+    $stderr.printf("no pics found in bucket:%s\n", (current_bucket - 240).to_s)
+    printf("#0000\n")
+    next
+  end
+  pp colour_array
+  colour = colour_array[0]["red_float_avg"].round * 65536 +
+           colour_array[0]["green_float_avg"].round * 256 +
+           colour_array[0]["blue_float_avg"].round 
+           
+  printf("#%4.4x\n", colour)
 end
-y= x.to_a
-pp y
-pp y[0]["green_float_avg"]
-#pp x["blue_float_avg"]
+
+# x.each do |p|
+#   pp p
+# end
+# y= x.to_a
+# pp y
+# pp y[0]["green_float_avg"].round
+# #pp x["blue_float_avg"]
