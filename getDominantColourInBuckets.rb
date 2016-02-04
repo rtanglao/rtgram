@@ -83,7 +83,6 @@ while next_bucket < last_bucket do
     printf("#0000\n")
     next
   end
-  pp colour_array
   colour = colour_array[0]["red_float_avg"].round * 65536 +
            colour_array[0]["green_float_avg"].round * 256 +
            colour_array[0]["blue_float_avg"].round 
