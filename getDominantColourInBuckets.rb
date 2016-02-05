@@ -80,13 +80,13 @@ while next_bucket < last_bucket do
   colour_array = colour_collection.to_a
   if colour_array.nil? || colour_array.length == 0
     $stderr.printf("no pics found in bucket:%s\n", (current_bucket - 240).to_s)
-    printf("#0000\n")
+    printf("#000000\n")
     next
   end
   colour = colour_array[0]["red_float_avg"].round * 65536 +
            colour_array[0]["green_float_avg"].round * 256 +
            colour_array[0]["blue_float_avg"].round 
            
-  printf("#%4.4x\n", colour)
+  printf("#%6.6x\n", colour)
 end
 
