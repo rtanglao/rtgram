@@ -90,10 +90,3 @@ while next_bucket < last_bucket do
   printf("#%4.4x\n", colour)
 end
 
-# x.each do |p|
-#   pp p
-# end
-# y= x.to_a
-# pp y
-# pp y[0]["green_float_avg"].round
-# #pp x["blue_float_avg"]
