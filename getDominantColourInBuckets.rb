@@ -33,7 +33,7 @@ while next_bucket < last_bucket do
             {"valid150x150jpg" => true, 'datetaken' =>
                                         { '$gte' => current_bucket,
                                           "$lt" => next_bucket } }}
-  red_green_blue_divide_by_100_and_pow =
+  red_green_blue_divide_by_255_and_pow =
     { '$project' =>
       { 
         "red_pow" => { "$pow" => [{"$divide" => ["$top_colour.red", 255.0]}, 2.2]},
@@ -69,7 +69,7 @@ while next_bucket < last_bucket do
 
 
   colour_collection = photosExtraMetadata.aggregate(
-    [match, red_green_blue_divide_by_100_and_pow,
+    [match, red_green_blue_divide_by_255_and_pow,
      red_green_blue_linear_avg,
      red_green_blue_float_avg
     ]
