@@ -4,6 +4,9 @@ require 'json'
 require 'pp'
 require 'mongo'
 
+Mongo::Logger.logger.level = ::Logger::FATAL # http://stackoverflow.com/questions/30292100/how-can-i-disable-mongodb-log-messages-in-console
+
+
 MONGO_HOST = ENV["MONGO_HOST"]
 raise(StandardError,"Set Mongo hostname in ENV: 'MONGO_HOST'") if !MONGO_HOST
 MONGO_PORT = ENV["MONGO_PORT"]
@@ -21,18 +24,24 @@ if MONGO_USER
     exit
   end
 end
-Mongo::Logger.logger.level = ::Logger::FATAL # http://stackoverflow.com/questions/30292100/how-can-i-disable-mongodb-log-messages-in-console
+
 
 photosExtraMetadata = db[:photosExtraMetadata]
 photosColl = db[:photos]
 
-photosExtraMetadata.find({"valid150x150jpg" => true }).sort({"datetaken" => 1}).each do |photo|
-  pp photo
-  # top_colour = { "red" => photo["top5colours"][0][0],
-  #                "blue" => photo["top5colours"][0][1],
-  #                "green" => photo["top5colours"][0][2]}
-  # extraMetadata = photosExtraMetadata.update_one(
-  #   { "id" => photo["id"]},
-  #   { "$set" => { "top_colour" => top_colour}})
-  # pp extraMetadata
+photosExtraMetadata.\
+  find({"valid150x150jpg" => true },
+       :fields => ["datetaken", "id", "top_colour"]).\
+  sort({"datetaken" => 1}).each do |extra_photo_metadata|
+  id = extra_photo_metadata["id"]
+
+  photo = photosColl.find({ "id" => id}).\
+          projection({ "id" => 1, "location" => 1}).limit(1).first()
+  printf("%s,%d,%d,%d,%d,%f,%f\n",
+         id, extra_photo_metadata["datetaken"].to_i,
+         extra_photo_metadata["top_colour"]["red"],
+         extra_photo_metadata["top_colour"]["blue"],
+         extra_photo_metadata["top_colour"]["green"],
+         photo["location"]["latitude"],
+         photo["location"]["longitude"])
 end
