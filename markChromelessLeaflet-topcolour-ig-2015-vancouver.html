@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+	<title>Instagram Vancouver Chromeless 2015 </title>
+<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
+<script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
+
+<script type="text/javascript" src="http://maps.stamen.com/js/tile.stamen.js"></script>
+<script type="text/javascript"src="07feb2016-2015-instagram-vancouver-dominantcolour.js"></script>
+<script type="text/javascript">
+function initialize() {
+  var layer = new L.StamenTileLayer("toner-background");
+  var map = new L.Map("map", {
+        scrollWheelZoom: true,
+        touchZoom: true,
+        doubleClickZoom: true,
+        zoomControl: true,
+        dragging: false,
+        center: new L.LatLng(49.2780045,-123.1188747),
+	zoom: 14,
+	minZoom: 10,
+	maxZoom: 18,
+	//layers: [layer],
+	 });
+  for (var i = 0; i <instagram_vancouver_2015_1_1_2015_12_31.length;
+i++) {
+L.polygon(
+[[instagram_vancouver_2015_1_1_2015_12_31[i][5],
+instagram_vancouver_2015_1_1_2015_12_31[i][6]]],
+{weight: 3, color:
+'#'+instagram_vancouver_2015_1_1_2015_12_31[i][2].toString(16) +
+instagram_vancouver_2015_1_1_2015_12_31[i][3].toString(16) +
+instagram_vancouver_2015_1_1_2015_12_31[i][4].toString(16) }).addTo(map);
+  }
+}
+</script>
+        <style type="text/css">
+            #map {
+                width: 1920px;
+                height: 1080px;
+            }
+        </style>
+    </head>
+    <body onload="initialize()">
+        <div id="map">
+        </div>
+    </body>
+</html>
+</head>
+
