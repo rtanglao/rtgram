@@ -12,6 +12,7 @@
 
 ## Get the dominant colour of the valid images
 not there are kludges ahead i.e. I’d do it differently if I did it again :-) :
+
 1. ../getValidJpeg.rb >validjpegs.txt 2>2015-vancouver-instagram-invalidjpegs.txt #(have to remove mongodb error logging from these 2 files)
 2. cat invalidjpegs.txt | ../markInvalid.rb
 3. ../markInvalid.rb 2015-vancouver-instagram-invalidjpegs.txt
