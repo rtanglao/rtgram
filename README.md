@@ -1,4 +1,4 @@
-#2016
+#Vancouver Instagram 2015
 
 ## First get the data into mongo db:
 
