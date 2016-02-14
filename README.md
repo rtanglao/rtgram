@@ -2,8 +2,8 @@
 
 ## First get the data into mongo db:
 
-    1. . setupRTInstagram
-    2. backupPublicVancouverPhotosByDateTaken.rb 2015 1 1 2015 12 31
+    . setupRTInstagram
+    backupPublicVancouverPhotosByDateTaken.rb 2015 1 1 2015 12 31
 
 ## Download the 150x150px thumbnails
     mkdir THUMBNAIL_150x150
@@ -12,6 +12,7 @@
 
 ## Get the dominant colour of the valid images
 NOTE: there are kludges ahead i.e. I’d do it differently if I did it again :-) :
+
     ../getValidJpeg.rb >validjpegs.txt 2>2015-vancouver-instagram-invalidjpegs.txt #(have to remove mongodb error logging from these 2 files)    
     ../getValidJpeg.rb >validjpegs.txt 2>2015-vancouver-instagram-invalidjpegs.txt #get valid and in valid jpegs (some were deleted by users)
     ../markInvalid.rb 2015-vancouver-instagram-invalidjpegs.txt
