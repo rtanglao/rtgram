@@ -12,9 +12,8 @@
 
 ## Get the dominant colour of the valid images
 NOTE: there are kludges ahead i.e. I’d do it differently if I did it again :-) :
-
-    ../getValidJpeg.rb >validjpegs.txt 2>2015-vancouver-instagram-invalidjpegs.txt #(have to remove mongodb error logging from these 2 files)    
-    ../getValidJpeg.rb >validjpegs.txt 2>2015-vancouver-instagram-invalidjpegs.txt #get valid and in valid jpegs (some were deleted by users)
+ 
+    ../getValidJpeg.rb >validjpegs.txt 2>2015-vancouver-instagram-invalidjpegs.txt #get valid and in valid jpegs (some were deleted by users), also have to remove mongodb error logging from these 2 files
     ../markInvalid.rb 2015-vancouver-instagram-invalidjpegs.txt
     ../markValidAndSaveTop5Colours.rb validjpegs.txt
     ../addDateTakenToExtraMetadata.rb # this is a kludge for convenience!
