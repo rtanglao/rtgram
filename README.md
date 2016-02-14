@@ -13,8 +13,10 @@
 ## Get the dominant colour of the valid images
 NOTE: there are kludges ahead i.e. I’d do it differently if I did it again :-) :
 
-    1. ../getValidJpeg.rb >validjpegs.txt 2>2015-vancouver-instagram-invalidjpegs.txt #(have to remove mongodb error logging from these 2 files)
-    2. cat invalidjpegs.txt | ../markInvalid.rb
+    1. ../getValidJpeg.rb >validjpegs.txt 2>2015-vancouver-instagram-invalidjpegs.txt #(have to remove mongodb error logging from these 2 files), results in instagram data for vancouver photos in a mongodb structured exactly like what you get from the instagram api
+    2. mkdir THUMBNAIL_150x150; cd !$
+    2. ../download150x150-ig.rb
+    2. ../getValidJpeg.rb >validjpegs.txt 2>2015-vancouver-instagram-invalidjpegs.txt
     3. ../markInvalid.rb 2015-vancouver-instagram-invalidjpegs.txt
     4. ../markValidAndSaveTop5Colours.rb validjpegs.txt
     5. ../addDateTakenToExtraMetadata.rb # this is a kludge for convenience not needed really!
