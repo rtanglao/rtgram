@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+    <head>
+<title>H1Instagram Vancouver Chromeless 1Jan2015 </title>
+<script>L_PREFER_CANVAS = true;</script>
+<link rel="stylesheet"
+href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
+<script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
+
+<script type="text/javascript" src="http://maps.stamen.com/js/tile.stamen.js"></script>
+<script
+type="text/javascript"src="no-id-no-time-14feb2016-vancouver-instagram-2015-topcolour-2015-1-1-2015-1-1.js"></script>
+<script type="text/javascript" src='http://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-image/v0.0.4/leaflet-image.js'></script>
+<script type="text/javascript">
+function initialize() {
+  var layer = new L.StamenTileLayer("toner-background");
+  var map = new L.Map("map", {
+        scrollWheelZoom: true,
+        touchZoom: true,
+        doubleClickZoom: true,
+        zoomControl: true,
+        dragging: false,
+        center: new L.LatLng(49.2780045,-123.1188747),
+	zoom: 14,
+	minZoom: 10,
+	maxZoom: 18,
+	//layers: [layer],
+	 });
+  for (var i = 0; i <instagram_vancouver_top_colour_2015_1_1_2015_1_1.length;
+i++) {
+L.polygon(
+[[instagram_vancouver_top_colour_2015_1_1_2015_1_1[i][3],
+instagram_vancouver_top_colour_2015_1_1_2015_1_1[i][4]]],
+{weight: 3, color:
+'#'+instagram_vancouver_top_colour_2015_1_1_2015_1_1[i][0].toString(16) +
+instagram_vancouver_top_colour_2015_1_1_2015_1_1[i][1].toString(16) +
+instagram_vancouver_top_colour_2015_1_1_2015_1_1[i][2].toString(16) }).addTo(map);
+  }
+
+var container = document.getElementById('map');
+
+var images = container.getElementsByTagName('img');
+for (var i = 0; i < images.length; i++) {
+    images[i].setAttribute('crossOrigin', 'anonymous');
+    images[i].src = images[i].src;
+}
+        
+var canvas  = document.getElementById('map');
+var context = canvas.getContext('2d');
+        
+canvas.width  = document.documentElement.clientWidth;
+canvas.height = document.documentElement.clientHeight;
+        
+for (i = 0; i < images.length; i++) {
+    if (typeof images[i] != 'undefined') {
+        context.drawImage(images[i],
+            images[i].style.left.slice(0, -2), // slice off 'px' from end of str
+            images[i].style.top.slice(0, -2),
+            images[i].clientWidth,
+            images[i].clientHeight
+        );
+    }
+}
+ 
+window.open(canvas.toDataURL());
+
+}
+
+</script>
+        <style type="text/css">
+            #map {
+                width: 1920px;
+                height: 1080px;
+            }
+        </style>
+    </head>
+    <body onload="initialize()">
+        <div id="map">
+        </div>
+    </body>
+</html>
+</head>
+
