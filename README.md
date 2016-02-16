@@ -20,4 +20,23 @@ NOTE: there are kludges ahead i.e. I’d do it differently if I did it again :-)
     ../getDominantColourInBuckets.rb >04feb2016-ig-vancouver-dominantcolour-4-minutebuckets-2015.hexdump
     xxd -r -p  04feb2016-ig-vancouver-dominantcolour-4-minutebuckets-2015.hexdump 04feb2016-ig-vancouver-dominantcolour-4-minutebuckets-2015.raw
     convert -depth 8  -size 360x360 04feb2016-ig-vancouver-dominantcolour-4-minutebuckets-2015.rgb 05feb2016-ig-vancouver-dominantcolour-4-minutebuckets-2015.png # open rawfile in photoshop or using imagemagick
+    
+# Making an Eric Fisher style map
+   
+    git clone https://github.com/ericfischer/datamaps.git
+    cd datamaps
+    make
+    cat 15feb2015-ig-vancouver-2015-lat-lon.txt | ./encode -o instagram-vancouver-2015 -z16
+    ./render -A -- instagram-vancouver-2015/ 16 49.25706 -123.070538525034 49.29808542 -123.159733 > ig-vancouver-2015.png
+    
+# Helpful emacs regular expressions
+
+     1. to get rid of instagram ids:
+     
+         ^\[\”[0-9_]+\”, replace with [
+         
+     1. to get rid of ids:
+     
+         ^\[[0-9]+, replace with [
+     
 
