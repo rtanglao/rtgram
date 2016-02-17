@@ -29,6 +29,13 @@ NOTE: there are kludges ahead i.e. I’d do it differently if I did it again :-)
     cat 15feb2015-ig-vancouver-2015-lat-lon.txt | ./encode -o instagram-vancouver-2015 -z16
     ./render -A -- instagram-vancouver-2015/ 16 49.25706 -123.070538525034 49.29808542 -123.159733 > ig-vancouver-2015.png
     
+## Next Steps: 
+
+1. convert specificDateWriteJSONTopColour.rb to make files with h values
+1. make 365 files
+ 1.  make 365 pngs 
+ 1.  turn into animated GIF and video   
+    
 # Helpful emacs regular expressions
 
      1. to get rid of instagram ids:
