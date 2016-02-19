@@ -3,8 +3,49 @@ require 'rubygems'
 require 'pp'
 require 'mongo'
 
-Mongo::Logger.logger.level = ::Logger::FATAL # http://stackoverflow.com/questions/30292100/how-can-i-disable-mongodb-log-messages-in-console
+def getH(r, g, b)
+  h = 0
+  s = 0
+  v = 0
+  
+  min = r < g ? r : g
+  min = min  < b ? min  : b
 
+  max = r > g ? r : g
+  max = max  > b ? max  : b
+  
+  v = max                       # v
+  delta = max - min
+  if (delta < 0.00001)
+    s = 0
+    h = 0 # undefined, maybe nan?
+    return 0
+  end
+  if( max > 0.0 ) # NOTE: if Max is == 0, this divide would cause a crash
+    s = (delta / max)                  # s
+  else 
+    s = 0.0
+    h = 255                            # its now undefined
+    return h
+  end
+  if( r >= max )                           # > is bogus, just keeps compilor happy
+    h = ( g - b ) / delta        # between yellow & magenta
+  elsif( g >= max )
+    h = 2.0 + (b - r ) / delta  # between cyan & yellow
+  else
+    h = 4.0 + ( r - g ) / delta  # between magenta & cyan
+  end
+
+  h *= 60.0                             # degrees
+
+  if( h < 0.0 )
+    h += 360.0
+  end
+
+  return h
+end
+  
+Mongo::Logger.logger.level = ::Logger::FATAL # http://stackoverflow.com/questions/30292100/how-can-i-disable-mongodb-log-messages-in-console
 
 if ARGV.length < 6
   puts "usage: #{$0} yyyy mm dd yyyy mmm dd"
@@ -53,7 +94,7 @@ photosExtraMetadata.\
   h = getH(extra_photo_metadata["top_colour"]["red"],
            extra_photo_metadata["top_colour"]["blue"],
            extra_photo_metadata["top_colour"]["green"])
-  printf("[\"%s\",%d,%d,%f,%f],\n",
+  printf("[\"%s\",%d,:%2.2X,%f,%f],\n",
          id, extra_photo_metadata["datetaken"].to_i,
          h,
          photo["location"]["latitude"],
