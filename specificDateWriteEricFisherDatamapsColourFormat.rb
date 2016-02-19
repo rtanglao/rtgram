@@ -73,13 +73,9 @@ if MONGO_USER
   end
 end
 
-
 photosExtraMetadata = db[:photosExtraMetadata]
 photosColl = db[:photos]
 
-printf("instagram_vancouver_top_colour_%d_%d_%d_%d_%d_%d=[\n",
-       MIN_DATE.year, MIN_DATE.month, MIN_DATE.mday,
-       MAX_DATE.year, MAX_DATE.month, MAX_DATE.mday)
 query = {}
 query["datetaken"] = {"$gte" => MIN_DATE, "$lte" => MAX_DATE}
 query["valid150x150jpg"] = true
