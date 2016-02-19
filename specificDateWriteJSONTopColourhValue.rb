@@ -94,10 +94,9 @@ photosExtraMetadata.\
   h = getH(extra_photo_metadata["top_colour"]["red"],
            extra_photo_metadata["top_colour"]["blue"],
            extra_photo_metadata["top_colour"]["green"])
-  printf("[\"%s\",%d,:%2.2X,%f,%f],\n",
+  printf("[\"%s\",%d,%f,%f, :%d],\n",
          id, extra_photo_metadata["datetaken"].to_i,
-         h,
          photo["location"]["latitude"],
-         photo["location"]["longitude"])
+         photo["location"]["longitude"], h)
 end
 printf("];\n")
