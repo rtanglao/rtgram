@@ -31,7 +31,8 @@ NOTE: there are kludges ahead i.e. I’d do it differently if I did it again :-)
     
 ## Next Steps: 
 
-1. convert specificDateWriteJSONTopColour.rb to make files with h values
+1. convert specificDateWriteJSONTopColour.rb to make files with h values - DONE !
+	2. ./specificDateWriteEricFisherDatamapsColourFormat.rb 2015 1 1 2015 1 1 > 19feb2016-lat-long-h.enfformat
 1. make 365 files
  1.  make 365 pngs 
  1.  turn into animated GIF and video   
