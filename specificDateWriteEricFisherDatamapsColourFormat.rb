@@ -19,7 +19,7 @@ def getH(r, g, b)
   if (delta < 0.00001)
     s = 0
     h = 0 # undefined, maybe nan?
-    return 0
+    return 0 # grey?!? return 0 which is red??!?
   end
   if( max > 0.0 ) # NOTE: if Max is == 0, this divide would cause a crash
     s = (delta / max)                  # s
@@ -92,5 +92,5 @@ photosExtraMetadata.\
            extra_photo_metadata["top_colour"]["green"])
   printf("%f,%f :%d\n",
          photo["location"]["latitude"],
-         photo["location"]["longitude"], h)
+         photo["location"]["longitude"], (h*0.7083333333).round) # need value between 0 and 255 not 360!
 end
