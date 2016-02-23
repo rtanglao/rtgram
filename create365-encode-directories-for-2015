@@ -1,0 +1,13 @@
+#!/usr/bin/env ruby
+require 'rubygems'
+require 'open3'
+
+Dir.glob('/Users/rtanglao/Dropbox/GIT/rtgram/2015-IG-VAN-365-ENF-DATAMAPS_FILES/*.enfformat') do |enf_file|
+directory = enf_file.split('/')[-1].split('.')[0] + '-DIRECTORY'
+printf("enf_file:%s directory:%s\n", enf_file, directory)
+stdout, stderr, status = Open3.capture3(
+	"cat " + enf_file +
+	" | /Users/rtanglao/Dropbox/GIT/datamaps/encode -o " + directory + " -z16 -m8" )
+print stderr
+end
+
