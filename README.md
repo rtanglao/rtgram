@@ -37,8 +37,12 @@ NOTE: there are kludges ahead i.e. I’d do it differently if I did it again :-)
 	4. cat ~/Dropbox/Git/rtgram/20feb2016-vancouver-2015-ig-lat-long-h.enfformat | ./encode -o 20feb2016-instagram-vancouver-2015-topcolour -z16 -m8
 	5.  ./render -L 5 -C256 -A -- 20feb2016-instagram-vancouver-2015-topcolour 16 49.25706 -123.070538525034 49.29808542 -123.159733 > 20feb2016-L5-ig-vancouver-2015-colour.png
 1. make 365 files
+ cd &lt;directory with encode directories>;../create365-encode-directories-for-2015
  1.  make 365 pngs 
- 1.  turn into animated GIF and video   
+ cd &lt;directory where you want the jpegs>; ../create-365-p50-pngs-for-2015.rb
+ 1.  turn into animated GIF and video 
+ gm convert -loop 50 -delay 20 *.png ig-2015-van-p50.gif
+  
     
 # Helpful emacs regular expressions
 
