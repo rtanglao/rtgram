@@ -32,25 +32,25 @@ NOTE: there are kludges ahead i.e. I’d do it differently if I did it again :-)
 ## Next Steps: 
 
 1. convert specificDateWriteJSONTopColour.rb to make files with h values - DONE !
-	2. ./specificDateWriteEricFisherDatamapsColourFormat.rb 2015 1 1 2015 1 1 > 19feb2016-lat-long-h.enfformat
-	3. ./specificDateWriteEricFisherDatamapsColourFormat.rb 2015 1 1 2015 12 31 > 20feb2016-vancouver-2015-ig-lat-long-h.enfformat
-	4. cat ~/Dropbox/Git/rtgram/20feb2016-vancouver-2015-ig-lat-long-h.enfformat | ./encode -o 20feb2016-instagram-vancouver-2015-topcolour -z16 -m8
-	5.  ./render -L 5 -C256 -A -- 20feb2016-instagram-vancouver-2015-topcolour 16 49.25706 -123.070538525034 49.29808542 -123.159733 > 20feb2016-L5-ig-vancouver-2015-colour.png
+2. ./specificDateWriteEricFisherDatamapsColourFormat.rb 2015 1 1 2015 1 1 > 19feb2016-lat-long-h.enfformat
+3. ./specificDateWriteEricFisherDatamapsColourFormat.rb 2015 1 1 2015 12 31 > 20feb2016-vancouver-2015-ig-lat-long-h.enfformat
+4. cat ~/Dropbox/Git/rtgram/20feb2016-vancouver-2015-ig-lat-long-h.enfformat | ./encode -o 20feb2016-instagram-vancouver-2015-topcolour -z16 -m8
+5. ./render -L 5 -C256 -A -- 20feb2016-instagram-vancouver-2015-topcolour 16 49.25706 -123.070538525034 49.29808542 -123.159733 > 20feb2016-L5-ig-vancouver-2015-colour.png
 1. make 365 files
  cd &lt;directory with encode directories>;../create365-encode-directories-for-2015
- 1.  make 365 pngs 
+1. make 365 pngs 
  cd &lt;directory where you want the jpegs>; ../create-365-p50-pngs-for-2015.rb
- 1.  turn into animated GIF and video 
+1. turn into animated GIF and video 
  gm convert -loop 50 -delay 20 *.png ig-2015-van-p50.gif
   
     
 # Helpful emacs regular expressions
 
-     1. to get rid of instagram ids:
+ 1. to get rid of instagram ids:
      
          ^\[\”[0-9_]+\”, replace with [
          
-     1. to get rid of ids:
+ 1. to get rid of ids:
      
          ^\[[0-9]+, replace with [
      
