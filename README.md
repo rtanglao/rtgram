@@ -42,6 +42,9 @@ NOTE: there are kludges ahead i.e. I’d do it differently if I did it again :-)
  cd &lt;directory where you want the jpegs>; ../create-365-p50-pngs-for-2015.rb
 1. turn into animated GIF and video 
  gm convert -loop 50 -delay 20 *.png ig-2015-van-p50.gif
+ convert -format jpg *.png
+ mv *.jpg to another directory
+ run time lapse assembler
   
     
 # Helpful emacs regular expressions
