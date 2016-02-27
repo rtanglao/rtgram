@@ -46,7 +46,7 @@ NOTE: there are kludges ahead i.e. I’d do it differently if I did it again :-)
  mv *.jpg to another directory
  run time lapse assembler
  
- 1. try brightening the jpgs using convert
+1. try brightening the jpgs using convert
   
     
 # Helpful emacs regular expressions
