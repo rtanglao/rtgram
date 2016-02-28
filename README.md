@@ -47,6 +47,7 @@ NOTE: there are kludges ahead i.e. I’d do it differently if I did it again :-)
  run time lapse assembler
  
 1. try brightening the jpgs using convert
+2. Maybe make some music out of the data?!? http://www.cbc.ca/radio/spark/296-sleep-secrets-drone-danger-and-more-1.3265562/listen-to-the-music-this-man-makes-out-of-ordinary-data-1.3270839
   
     
 # Helpful emacs regular expressions
