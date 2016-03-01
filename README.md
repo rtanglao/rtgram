@@ -44,10 +44,38 @@ NOTE: there are kludges ahead i.e. I’d do it differently if I did it again :-)
  gm convert -loop 50 -delay 20 *.png ig-2015-van-p50.gif
  convert -format jpg *.png
  mv *.jpg to another directory
- run time lapse assembler
- 
+ run time lapse assembler 
 1. try brightening the jpgs using convert
 2. Maybe make some music out of the data?!? http://www.cbc.ca/radio/spark/296-sleep-secrets-drone-danger-and-more-1.3265562/listen-to-the-music-this-man-makes-out-of-ordinary-data-1.3270839
+
+## 28 feb 2016 
+
+    convert -brightness-contrast 50x20 -format jpg ../*.png creates pngs in the current directory
+    convert -brightness-contrast 50x20 ../*.png %03d-increased-brightness-contrast-ig-vancouver-topcolour.jpg #otherwise it puts it in a different directory i.e. ..
+    convert -background white -alpha remove -layers optimize-plus -delay 15x60 -resize 800 *.jpg -loop 0
+### small multiples:
+
+    gm montage -verbose -adjoin -tile 19x19 +frame +shadow +label -adjoin -geometry '4156x2930+0+0<' *.jpg 28feb2016-361-out-365days-vancouver-instagram-20150-montage.png
+## 29feb 2016 
+
+    rtanglao13483:INCREASED_BRIGHTNESS rtanglao$ convert 29feb2016-19x19-361-out-365days-vancouver-instagram-20150-montage.png 9feb2016-19x19-361-out-365days-vancouver-instagram-20150-montage.jpg
+    convert: Maximum supported image dimension is 65500 pixels `9feb2016-19x19-361-out-365days-vancouver-instagram-20150-montage.jpg' @ error/jpeg.c/JPEGErrorHandler/322.
+
+    mkdir RESIZED1920; cd !$
+    convert -resize 1920 ../*.jpg 1920-%03d-increased-brightness-contrast-ig-vancouver-topcolour.jpg
+    gm montage -verbose -adjoin -tile 19x19 +frame +shadow +label -adjoin -geometry '1920x1354+0+0<' @1920-361-ig-vancouver-jpgs.txt 29feb2016-1920-361-out-365days-vancouver-instagram-20150-montage.png
+
+    convert -level 0%,100%,0.5 29feb2016-1920-361-out-365days-vancouver-instagram-20150-montage.png dark.5-gamma-29feb2016-1920-361-out-365days-vancouver-instagram-20150-montage.png
+
+    rtanglao13483:RESIZED1920 rtanglao$ brew install ghostscript
+==> Downloading https://homebrew.bintray.com/bottles/ghostscript-9.18.el_capitan
+######################################################################## 100.0%
+==> Pouring ghostscript-9.18.el_capitan.bottle.tar.gz
+🍺  /usr/local/Cellar/ghostscript/9.18: 709 files, 61M
+
+    convert -font Times-Bold  -pointsize 64 1920-361-increased-brightness-contrast-ig-vancouver-topcolour.jpg -fill white  -undercolor '#00000080' -gravity southeast  -annotate +0+5 'SorthEast' output.jpg 
+
+
   
     
 # Helpful emacs regular expressions
