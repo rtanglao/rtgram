@@ -75,6 +75,9 @@ NOTE: there are kludges ahead i.e. I’d do it differently if I did it again :-)
 
     convert -font Times-Bold  -pointsize 64 1920-361-increased-brightness-contrast-ig-vancouver-topcolour.jpg -fill white  -undercolor '#00000080' -gravity southeast  -annotate +0+5 'SorthEast' output.jpg 
 
+## 02 March 2016
+1. added rotated-3325x6279-100percent-saturation-1000percent-05feb2016-ig-vancouver-dominantcolour-4-minutebuckets-2015-low-quality.jpg which is used for custom shoes at zazzle and art of wear
+	* http://www.zazzle.com/instagram_vancouver_2015_top_color_shoes_printed_shoes-256051822005766899
 
   
     
