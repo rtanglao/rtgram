@@ -84,6 +84,9 @@ NOTE: there are kludges ahead i.e. I’d do it differently if I did it again :-)
     mkdir ANNOTATED_WITH_DATE
     ~/Dropbox/GIT/rtgram/create365-date-overlayed-jpgs.rb
     # jpegs are “ddd-day_of_week_Month_day_year.jpg” e.g. 183-Thursday_Jul_2_2015.jpg
+    cd ANNOTATED_WITH_DATE
+    ls -1 | head -361 > 361-ig-vancouver-jpgs.txt
+    gm montage -verbose -adjoin -tile 19x19 +frame +shadow +label -adjoin -geometry '1920x1354+0+0<' @361-ig-vancouver-jpgs.txt 02March2016–date-annotated-1920-361-out-365days-vancouver-instagram-20150-montage.jpg # (or .png)
 
   
     
