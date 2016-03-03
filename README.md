@@ -78,6 +78,12 @@ NOTE: there are kludges ahead i.e. I’d do it differently if I did it again :-)
 ## 02 March 2016
 1. added rotated-3325x6279-100percent-saturation-1000percent-05feb2016-ig-vancouver-dominantcolour-4-minutebuckets-2015-low-quality.jpg which is used for custom shoes at zazzle and art of wear
 	* http://www.zazzle.com/instagram_vancouver_2015_top_color_shoes_printed_shoes-256051822005766899
+## To annotate with date
+
+    cd /Users/rtanglao/Dropbox/GIT/rtgram/2015-IG-VAN-365-ENF-DATAMAPS-P50-PNGS/INCREASED_BRIGHTNESS/RESIZED1920
+    mkdir ANNOTATED_WITH_DATE
+    ~/Dropbox/GIT/rtgram/create365-date-overlayed-jpgs.rb
+    # jpegs are “ddd-day_of_week_Month_day_year.jpg” e.g. 183-Thursday_Jul_2_2015.jpg
 
   
     
