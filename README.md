@@ -99,6 +99,7 @@ What should I present on? Maybe:
 1. the crazy “unsupported” :-) instagram API 
 2. MongoDB for API prototyping?
 3. homage to Kip?
+4. try some ggmap stuff?
 4. etc ?
     
 # Helpful emacs regular expressions
