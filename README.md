@@ -77,7 +77,7 @@ NOTE: there are kludges ahead i.e. I’d do it differently if I did it again :-)
 
 ## 02 March 2016
 1. added rotated-3325x6279-100percent-saturation-1000percent-05feb2016-ig-vancouver-dominantcolour-4-minutebuckets-2015-low-quality.jpg which is used for custom shoes at zazzle and art of wear
-	* http://www.zazzle.com/instagram_vancouver_2015_top_color_shoes_printed_shoes-256051822005766899
+	* [custom shoes from zazzle](http://www.zazzle.com/instagram_vancouver_2015_top_color_shoes_printed_shoes-256051822005766899)
 
 ## To annotate with date
 
@@ -92,7 +92,14 @@ NOTE: there are kludges ahead i.e. I’d do it differently if I did it again :-)
     ls -1 | head -361 > 361-ig-vancouver-jpgs.txt
     gm montage -verbose -adjoin -tile 19x19 +frame +shadow +label -adjoin -geometry '1920x1354+0+0<' @361-ig-vancouver-jpgs.txt 02March2016–date-annotated-1920-361-out-365days-vancouver-instagram-20150-montage.jpg # (or .png)
 
-  
+## April 4, 2016 1p.m. UBC Talk
+
+What should I present on? Maybe:
+
+1. the crazy “unsupported” :-) instagram API 
+2. MongoDB for API prototyping?
+3. homage to Kip?
+4. etc ?
     
 # Helpful emacs regular expressions
 
