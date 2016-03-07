@@ -101,12 +101,14 @@ What should I present on? Maybe:
 4. etc ?
 
 ## March 6, 2016
-* Theory: nil lat and long cause blank spots in maps
-* missing line in specificDateWriteEricFischerDatamapsColourFormat.rb:    
+Theory: nil lat and long cause blank spots in maps
+* theory is correct, here is the missing line in specificDateWriteEricFischerDatamapsColourFormat.rb:    
 
    ```next if photo["location"]["latitude"].nil?```
+   
 ## March 7, 2016
-```mogrify —path . format jpg @365-ig-vancouver-topcolour-png-list.txt```
+
+```mogrify —path . -format jpg @365-ig-vancouver-topcolour-png-list.txt```
  
 # Helpful emacs regular expressions
 
