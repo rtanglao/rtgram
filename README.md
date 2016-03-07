@@ -102,9 +102,9 @@ What should I present on? Maybe:
 
 ## March 6, 2016
 Theory: nil lat and long cause blank spots in maps
-* theory is correct, here is the missing line in specificDateWriteEricFischerDatamapsColourFormat.rb:    
-
-   ```next if photo["location"]["latitude"].nil?```
+* theory is correct, here is the missing line in specificDateWriteEricFischerDatamapsColourFormat.rb:      
+ 
+```next if photo["location"]["latitude"].nil?```
    
 ## March 7, 2016
 
