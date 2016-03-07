@@ -90,6 +90,7 @@ photosExtraMetadata.\
   h = getH(extra_photo_metadata["top_colour"]["red"],
            extra_photo_metadata["top_colour"]["blue"],
            extra_photo_metadata["top_colour"]["green"])
+  next if photo["location"]["latitude"].nil?
   printf("%f,%f :%d\n",
          photo["location"]["latitude"],
          photo["location"]["longitude"], (h*0.7083333333).round) # need value between 0 and 255 not 360!
