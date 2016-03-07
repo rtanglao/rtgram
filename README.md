@@ -36,13 +36,13 @@ NOTE: there are kludges ahead i.e. I’d do it differently if I did it again :-)
 3. ```../create365-enf-colour-files-for-2015.rb ```
 4. ```cd ../Users/rtanglao/Dropbox/GIT/rtgram/2015-IG-VAN-365-ENF-DATAMAPS-DIRECTORIES```
 5. ```../create365-encode-directories-for-2015 ```
-1. make 365 pngs 
- cd &lt;directory where you want the jpegs>; ../create-365-p50-pngs-for-2015.rb
+1. make 365 pngs: 
+```cd &lt;directory where you want the jpegs>; ../create-365-p50-pngs-for-2015.rb```
 1. turn into animated GIF and video 
- gm convert -loop 50 -delay 20 *.png ig-2015-van-p50.gif
- convert -format jpg *.png
- mv *.jpg to another directory
- run time lapse assembler 
+```gm convert -loop 50 -delay 20 *.png ig-2015-van-p50.gif```
+```convert -format jpg *.png```
+```mv *.jpg to another directory```
+```run time lapse assembler```
 1. try brightening the jpgs using convert
 2. Maybe make some music out of the data?!? http://www.cbc.ca/radio/spark/296-sleep-secrets-drone-danger-and-more-1.3265562/listen-to-the-music-this-man-makes-out-of-ordinary-data-1.3270839
 
