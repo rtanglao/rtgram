@@ -101,6 +101,7 @@ What should I present on? Maybe:
 3. homage to Kip?
 4. try some ggmap stuff?
 4. etc ?
+
 ## April 6, 2016
 * Theory: nil lat and long cause blank spots in maps
 * missing line in specificDateWriteEricFischerDatamapsColourFormat.rb:    
