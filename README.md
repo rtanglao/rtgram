@@ -117,6 +117,9 @@ Theory: nil lat and long cause blank spots in maps
 1. make annotated jpegs:
 ```mkdir ANNOTATED_WITH_DATE;~/Dropbox/GIT/rtgram/create365-v2-date-overlaid-jpgs.rb```
 
+## March 9, 2016
+1. use montage “null:” to make a day of the week graphic:  
+```http://www.imagemagick.org/Usage/montage/#null```
  
 # Helpful emacs regular expressions
 
