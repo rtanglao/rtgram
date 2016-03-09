@@ -112,7 +112,7 @@ Theory: nil lat and long cause blank spots in maps
 
 ## March 8, 2016
 
-1. make 1920 jpgs in preparation for labelling with the date:  
+1. make 1920 pixel wide jpgs in preparation for labelling with the date:  
 ```mkdir 1920; cd 1920; mogrify -resize 1920 -path . ../*.jpg ```
 
  
