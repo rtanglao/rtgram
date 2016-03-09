@@ -109,6 +109,12 @@ Theory: nil lat and long cause blank spots in maps
 ## March 7, 2016
 
 ```mogrify —path . -format jpg @365-ig-vancouver-topcolour-png-list.txt```
+
+## March 8, 2016
+
+1. make 1920 jpgs in preparation for labelling with the date:  
+```mkdir 1920; cd 1920; mogrify -resize 1920 -path . ../*.jpg ```
+
  
 # Helpful emacs regular expressions
 
