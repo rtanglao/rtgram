@@ -114,6 +114,8 @@ Theory: nil lat and long cause blank spots in maps
 
 1. make 1920 pixel wide jpgs in preparation for labelling with the date:  
 ```mkdir 1920; cd 1920; mogrify -resize 1920 -path . ../*.jpg ```
+1. make annotated jpegs:
+```mkdir ANNOTATED_WITH_DATE;~/Dropbox/GIT/rtgram/create365-v2-date-overlaid-jpgs.rb```
 
  
 # Helpful emacs regular expressions
