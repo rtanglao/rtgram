@@ -118,8 +118,11 @@ Theory: nil lat and long cause blank spots in maps
 ```mkdir ANNOTATED_WITH_DATE;~/Dropbox/GIT/rtgram/create365-v2-date-overlaid-jpgs.rb```
 
 ## March 9, 2016
-1. use montage “null:” to make a day of the week graphic, i.e. instead of 61x61 have 52 rows for each week, the first week will have 3 null images for Monday-Wednesday since 2015 started on a Thursday:  
+1. use montage “null:” to make a day of the week graphic, i.e. instead of 61x61 have 52 rows for each week, the first week will have 3 null images for Monday-Wednesday since 2015 started on a Thursday:   
+
 ```http://www.imagemagick.org/Usage/montage/#null```
+
+2. ```gm montage -verbose -adjoin -tile 7x52 +frame +shadow +label -adjoin -geometry '1920x1354+0+0<' null: null: null: @365jpgs.txt 09march2016-52x7-365days-vancouver-instagram-2015-montage.png```
  
 # Helpful emacs regular expressions
 
