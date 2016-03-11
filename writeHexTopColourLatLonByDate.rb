@@ -42,6 +42,8 @@ photosExtraMetadata.\
                            extra_photo_metadata["top_colour"]["red"],
                            extra_photo_metadata["top_colour"]["green"],
                            extra_photo_metadata["top_colour"]["blue"])
+  
+  next if photo["location"]["latitude"].nil?
   printf("%s,%f,%f\n",
          colour_hex_str,                   
          photo["location"]["latitude"],
