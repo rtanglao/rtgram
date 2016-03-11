@@ -122,7 +122,11 @@ Theory: nil lat and long cause blank spots in maps
 ```http://www.imagemagick.org/Usage/montage/#null```
 
 2. ```gm montage -verbose -adjoin -tile 7x53 +frame +shadow +label -adjoin -geometry '1920x1354+0+0<' null: null: null: @365jpgs.txt null: null: null: 09march2016-53x7-365days-vancouver-instagram-2015-montage.png```
-    
+
+## March 10 2016
+1. Prepare CSV for mapping using GGMAP  
+```./writeHexTopColourLatLonByDate.rb > 10March2016-instagram-vancouver-top-colour-lat-long-2015.csv```
+
 # Helpful emacs regular expressions
 
  1. to get rid of instagram ids:
