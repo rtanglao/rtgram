@@ -30,6 +30,9 @@ photosExtraMetadata = db[:photosExtraMetadata]
 photosColl = db[:photos]
 
 printf("color,lat,long,date\n")
+day_number = 0
+previous_date_str = ""
+
 photosExtraMetadata.\
   find({"valid150x150jpg" => true },
        :fields => ["datetaken", "id", "top_colour"]).\
@@ -44,10 +47,15 @@ photosExtraMetadata.\
                            extra_photo_metadata["top_colour"]["blue"])
   
   next if photo["location"]["latitude"].nil?
-  time_str = extra_photo_metadata["datetaken"].localtime.strftime("%A_%b_%-d_%Y")
-  printf("%s,%f,%f,%s\n",
+  time_str = extra_photo_metadata["datetaken"].localtime.strftime("%a%b%-d")
+  if time_str != previous_date_str
+    day_number += 1
+    previous_date_str = time_str
+  end
+  printf("%s,%f,%f,%3.3d_%s\n",
          colour_hex_str,                   
          photo["location"]["latitude"],
          photo["location"]["longitude"],
+         day_number,
          time_str)
 end
