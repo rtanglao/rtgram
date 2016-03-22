@@ -138,6 +138,15 @@ Theory: nil lat and long cause blank spots in maps
  cat 150x150jpgs.txt | xargs -n 1 mogrify -path . -resize 1x150\! #mogrify can't handle 1 million photos so use xargs to do 1 at a time!
 ```
 
+## March 22 2016 - barcode part 2
+geometry refers to each individual sub-image not the entire montage
+
+cat 1pxX150px-jpgs.txt  | csplit -k \
+-f 1920x7-13440files- -n 2 - 13440 '{99}'
+gm montage -verbose -tile 1920x7 +frame +shadow \
++label -adjoin -geometry '1x150+0+0<' \
+@1920x7-13440files-00 13440jpgs-in-one.png
+
 # Helpful emacs regular expressions
 
  1. to get rid of instagram ids:
