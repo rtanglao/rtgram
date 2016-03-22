@@ -131,6 +131,13 @@ Theory: nil lat and long cause blank spots in maps
 1. Prepare CSV for mapping using GGMAP  
 ```./writeHexTopColourLatLonByDate.rb > 10March2016-instagram-vancouver-top-colour-lat-long-2015.csv```
 
+## March 21 2016 - make a barcode
+ ```sh
+ cd /Users/rtanglao/Dropbox/GIT/rtgram ; mkdir THUMBNAIL_150x150; cd !$
+ find .. -name '*.jpg' -print > 150x150jpgs.txt #ls doesn't work because there are too many files!
+ cat 150x150jpgs.txt | xargs -n 1 mogrify -path . -resize 1x150\!
+```
+
 # Helpful emacs regular expressions
 
  1. to get rid of instagram ids:
