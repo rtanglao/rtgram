@@ -135,7 +135,7 @@ Theory: nil lat and long cause blank spots in maps
  ```sh
  cd /Users/rtanglao/Dropbox/GIT/rtgram ; mkdir THUMBNAIL_150x150; cd !$
  find .. -name '*.jpg' -print > 150x150jpgs.txt #ls doesn't work because there are too many files!
- cat 150x150jpgs.txt | xargs -n 1 mogrify -path . -resize 1x150\!
+ cat 150x150jpgs.txt | xargs -n 1 mogrify -path . -resize 1x150\! #mogrify can't handle 1 million photos so use xargs to do 1 at a time!
 ```
 
 # Helpful emacs regular expressions
