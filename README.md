@@ -140,13 +140,13 @@ Theory: nil lat and long cause blank spots in maps
 
 ## March 22 2016 - barcode part 2
 geometry refers to each individual sub-image (in this case 1px by 150 px not the entire montage
-
-cat 1pxX150px-jpgs.txt  | csplit -k \
--f 1920x7-13440files- -n 2 - 13440 '{99}'
-gm montage -verbose -tile 1920x7 +frame +shadow \
-+label -adjoin -geometry '1x150+0+0<' \
-@1920x7-13440files-00 13440jpgs-in-one.png
-
+ ```sh
+ cat 1pxX150px-jpgs.txt  | csplit -k \
+ -f 1920x7-13440files- -n 2 - 13440 '{99}'
+ gm montage -verbose -tile 1920x7 +frame +shadow \
+ +label -adjoin -geometry '1x150+0+0<' \
+ @1920x7-13440files-00 13440jpgs-in-one.png
+ ```
 # Helpful emacs regular expressions
 
  1. to get rid of instagram ids:
