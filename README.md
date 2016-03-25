@@ -158,6 +158,8 @@ cd /Users/rtanglao/Dropbox/Git/rtgram/THUMBNAIL_150x150/BARCODE-1px-150px
 ../../take2-write-1fileperdate-1px-x150px-jpgs.rb
 mkdir 2015_DAILY_BARCODES 
 ls -1 *-1px-slices.txt | xargs -n 4 ../../ create365barcodes-1-per-day.rb 
+cd 2015_DAILY_BARCODES
+gm montage -verbose -mode concatenate -tile 1x +shadow +frame +label *slices.png try4-no-geometry-2015-instagram-vancouver-barcode-by-day.png
 ```
 
 # Helpful emacs regular expressions
