@@ -27,23 +27,24 @@ end
 
 photosColl = db[:photos]
 
-MIN_DATE = Time.local(2015,1,1, 0, 0)
-MAX_DATE = Time.local(2015,1,1, 23, 59)
+min_date = Time.local(2015,1,1, 0, 0)
+max_date = Time.local(2015,1,1, 23, 59)
 
 dir = File.readlines("1pxX150px-jpgs.txt")
 
 for day_number in 1..365 do
+  time_str = min_date.strftime("%a%b%-d")
+  file_str = sprintf("%3.3d_%s", day_number, time_str) + "-1px-slices.txt"
   query = {}
-  query["datetaken"] = {"$gte" => MIN_DATE, "$lte" => MAX_DATE}
+  query["datetaken"] = {"$gte" => min_date, "$lte" => max_aet}
   photosColl.\
     find(query).projection({"datetaken" => 1, "id"=> 1}).\
     sort({"datetaken" => 1}).each do |photo|
     id = photo["id"]
     index = dir.index{|s| s=~ /#{id}/}
     next if index.nil?
-    print dir[index]    
+    File.open(file_str, 'a') { |f| f.write(dir[index]) }
   end
-  MIN_DATE += 60 * 60 * 24
-  MAX_DATE += 60 * 60 * 24
-  exit
+  min_date += 60 * 60 * 24
+  max_date += 60 * 60 * 24
 end
