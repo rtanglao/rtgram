@@ -151,6 +151,15 @@ geometry refers to each individual sub-image (in this case 1px by 150 px not the
  gm convert 22march2016-10x010-1920x1050-ig-vancouver-barcode.png \
  22march2016-10x010-1920x1050-ig-vancouver-barcode.jpg
  ```
+## 25 March 2016 barcode part 3
+ 
+```sh
+cd /Users/rtanglao/Dropbox/Git/rtgram/THUMBNAIL_150x150/BARCODE-1px-150px
+../../take2-write-1fileperdate-1px-x150px-jpgs.rb
+mkdir 2015_DAILY_BARCODES 
+ls -1 *-1px-slices.txt | xargs -n 4 ../../ create365barcodes-1-per-day.rb 
+```
+
 # Helpful emacs regular expressions
 
  1. to get rid of instagram ids:
