@@ -145,7 +145,7 @@ geometry refers to each individual sub-image (in this case 1px by 150 px not the
  -f 1920x7-13440files- -n 2 - 13440 '{99}'
  ls -1 1920x7-13440files-?? | xargs -n 1 \
  ../../create1920x1080p-barcode.rb
- gm montage -verbose -tile 10x10 +frame +shadow +label -adjoin -geometry '1920x1050+0+0<' \
+ gm montage -verbose -tile 10x10 +frame +shadow +label -adjoin -geometry '1x150+0+0<' \
  1920x7-13440files-??.png \
  22march2016-10x010-1920x1050-ig-vancouver-barcode.png
  gm convert 22march2016-10x010-1920x1050-ig-vancouver-barcode.png \
