@@ -21,7 +21,7 @@ NOTE: there are kludges ahead i.e. I’d do it differently if I did it again :-)
     xxd -r -p  04feb2016-ig-vancouver-dominantcolour-4-minutebuckets-2015.hexdump 04feb2016-ig-vancouver-dominantcolour-4-minutebuckets-2015.raw
     convert -depth 8  -size 360x360 04feb2016-ig-vancouver-dominantcolour-4-minutebuckets-2015.rgb 05feb2016-ig-vancouver-dominantcolour-4-minutebuckets-2015.png # open rawfile in photoshop or using imagemagick
     
-# Making an Eric Fisher style map
+# Making an Eric Fischer style map
    
     git clone https://github.com/ericfischer/datamaps.git
     cd datamaps
